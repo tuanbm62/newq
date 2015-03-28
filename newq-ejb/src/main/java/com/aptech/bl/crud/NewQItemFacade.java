@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.aptech.bl;
+package com.aptech.bl.crud;
 
-import com.aptech.model.NewQGroup;
+import com.aptech.model.NewQItem;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,17 +15,17 @@ import javax.persistence.EntityManager;
  * @author Chinh
  */
 @Stateless
-public class NewQGroupFacade extends AbstractFacade<NewQGroup> {
+public class NewQItemFacade extends AbstractFacade<NewQItem> {
     @Inject
     private EntityManager em;
-    
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-
-    public NewQGroupFacade() {
-        super(NewQGroup.class);
+    
+    public NewQItemFacade() {
+        super(NewQItem.class);
     }
     
 }

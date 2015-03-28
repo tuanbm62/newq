@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.aptech.bl;
+package com.aptech.bl.crud;
 
 import java.util.List;
 import javax.persistence.EntityManager;

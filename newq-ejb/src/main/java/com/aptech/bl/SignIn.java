@@ -5,27 +5,29 @@
  */
 package com.aptech.bl;
 
+import com.aptech.bl.crud.AppUserFacade;
 import com.aptech.model.AppUser;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
  * @author Chinh
  */
 @Stateless
-public class AppUserFacade extends AbstractFacade<AppUser> {
+public class SignIn {
     @Inject
-    private EntityManager em;
+    private AppUserFacade userFacade;
     
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
-    public AppUserFacade() {
-        super(AppUser.class);
+    public AppUser check(AppUser user){
+        user.setPwd(encryptPwd(user.getPwd()));
+        AppUser result = userFacade.findByNamePwd(user);
+        return result != null ? result : null;
     }
     
+    private String encryptPwd (String pwd){
+        return pwd;
+    }
+    
+    //Some bussiness
 }

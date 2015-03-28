@@ -34,7 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "AppUser.findByPwd", query = "SELECT a FROM AppUser a WHERE a.pwd = :pwd"),
     @NamedQuery(name = "AppUser.findByUserImage", query = "SELECT a FROM AppUser a WHERE a.userImage = :userImage"),
     @NamedQuery(name = "AppUser.findByIsAvailable", query = "SELECT a FROM AppUser a WHERE a.isAvailable = :isAvailable"),
-    @NamedQuery(name = "AppUser.findByUserRole", query = "SELECT a FROM AppUser a WHERE a.userRole = :userRole")})
+    @NamedQuery(name = "AppUser.findByUserRole", query = "SELECT a FROM AppUser a WHERE a.userRole = :userRole"),
+    @NamedQuery(name = "AppUser.findByNamePwd", query = "SELECT a FROM AppUser a WHERE a.name = :name AND a.pwd = :pwd")
+})
 public class AppUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
