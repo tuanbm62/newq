@@ -6,7 +6,7 @@
 package com.aptech.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "NewQGroup.findAll", query = "SELECT n FROM NewQGroup n"),
     @NamedQuery(name = "NewQGroup.findByNewQGroupId", query = "SELECT n FROM NewQGroup n WHERE n.newQGroupId = :newQGroupId"),
-    @NamedQuery(name = "NewQGroup.findByName", query = "SELECT n FROM NewQGroup n WHERE n.name = :name"),
+    @NamedQuery(name = "NewQGroup.findByNewQGroupName", query = "SELECT n FROM NewQGroup n WHERE n.newQGroupName = :newQGroupName"),
     @NamedQuery(name = "NewQGroup.findByIsAvailable", query = "SELECT n FROM NewQGroup n WHERE n.isAvailable = :isAvailable")})
 public class NewQGroup implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -40,12 +40,12 @@ public class NewQGroup implements Serializable {
     @Column(name = "newQGroupId")
     private Integer newQGroupId;
     @Size(max = 50)
-    @Column(name = "name")
-    private String name;
+    @Column(name = "newQGroupName")
+    private String newQGroupName;
     @Column(name = "isAvailable")
     private Boolean isAvailable;
     @OneToMany(mappedBy = "newQGroupId")
-    private Collection<NewQItem> newQItemCollection;
+    private List<NewQItem> newQItemList;
 
     public NewQGroup() {
     }
@@ -62,12 +62,12 @@ public class NewQGroup implements Serializable {
         this.newQGroupId = newQGroupId;
     }
 
-    public String getName() {
-        return name;
+    public String getNewQGroupName() {
+        return newQGroupName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNewQGroupName(String newQGroupName) {
+        this.newQGroupName = newQGroupName;
     }
 
     public Boolean getIsAvailable() {
@@ -79,12 +79,12 @@ public class NewQGroup implements Serializable {
     }
 
     @XmlTransient
-    public Collection<NewQItem> getNewQItemCollection() {
-        return newQItemCollection;
+    public List<NewQItem> getNewQItemList() {
+        return newQItemList;
     }
 
-    public void setNewQItemCollection(Collection<NewQItem> newQItemCollection) {
-        this.newQItemCollection = newQItemCollection;
+    public void setNewQItemList(List<NewQItem> newQItemList) {
+        this.newQItemList = newQItemList;
     }
 
     @Override

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Sign in</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <h:messages id="errors" infoStyle="color:blue" warnStyle="color:orange" errorStyle="color:red"/>
+        <h:form id="loginForm">
+            <h:panelGrid columns="2">
+                <h:outputText value="User name :" />
+                <h:inputText value="#{indexController.appUser.appName}" />
+                
+                <h:outputText value="Password :" />
+                <h:inputSecret value="#{indexController.appUser.appPwd}" />
+                
+                <h:outputText value="" />
+                <h:commandButton action="#{indexController.adminSignIn}" value="Sign in"/>
+            </h:panelGrid>
+            
+        </h:form>
+    </body>
+</html>

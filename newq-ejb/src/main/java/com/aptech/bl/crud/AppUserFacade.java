@@ -6,6 +6,7 @@
 package com.aptech.bl.crud;
 
 import com.aptech.model.AppUser;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -26,16 +27,15 @@ public class AppUserFacade extends AbstractFacade<AppUser> {
     }
     
     public AppUser findByNamePwd(AppUser appUser){
-        Query query = em.createNamedQuery("AppUser.findByNamePwd");
-        query.setParameter("name", appUser.getName());
-        query.setParameter("pwd", appUser.getPwd());
-        return (AppUser) query.getSingleResult();
+        List<AppUser> result = em.createNamedQuery("AppUser.findByNamePwd")
+                .setParameter("appName", appUser.getAppName())
+                .setParameter("appPwd", appUser.getAppPwd())
+                .getResultList();
+        return result.isEmpty() ? null : result.get(0);
     }
 
     public AppUserFacade() {
         super(AppUser.class);
     }
-    
-    
     
 }

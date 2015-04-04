@@ -6,7 +6,7 @@
 package com.aptech.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,12 +30,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "AppUser.findAll", query = "SELECT a FROM AppUser a"),
     @NamedQuery(name = "AppUser.findByAppUserId", query = "SELECT a FROM AppUser a WHERE a.appUserId = :appUserId"),
-    @NamedQuery(name = "AppUser.findByName", query = "SELECT a FROM AppUser a WHERE a.name = :name"),
-    @NamedQuery(name = "AppUser.findByPwd", query = "SELECT a FROM AppUser a WHERE a.pwd = :pwd"),
+    @NamedQuery(name = "AppUser.findByAppName", query = "SELECT a FROM AppUser a WHERE a.appName = :appName"),
+    @NamedQuery(name = "AppUser.findByAppPwd", query = "SELECT a FROM AppUser a WHERE a.appPwd = :appPwd"),
     @NamedQuery(name = "AppUser.findByUserImage", query = "SELECT a FROM AppUser a WHERE a.userImage = :userImage"),
     @NamedQuery(name = "AppUser.findByIsAvailable", query = "SELECT a FROM AppUser a WHERE a.isAvailable = :isAvailable"),
     @NamedQuery(name = "AppUser.findByUserRole", query = "SELECT a FROM AppUser a WHERE a.userRole = :userRole"),
-    @NamedQuery(name = "AppUser.findByNamePwd", query = "SELECT a FROM AppUser a WHERE a.name = :name AND a.pwd = :pwd")
+    @NamedQuery(name = "AppUser.findByNamePwd", query = "SELECT a FROM AppUser a WHERE a.appName = :appName AND a.appPwd = :appPwd")
 })
 public class AppUser implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -45,11 +45,11 @@ public class AppUser implements Serializable {
     @Column(name = "appUserId")
     private Integer appUserId;
     @Size(max = 15)
-    @Column(name = "name")
-    private String name;
+    @Column(name = "appName")
+    private String appName;
     @Size(max = 50)
-    @Column(name = "pwd")
-    private String pwd;
+    @Column(name = "appPwd")
+    private String appPwd;
     @Size(max = 200)
     @Column(name = "userImage")
     private String userImage;
@@ -59,9 +59,9 @@ public class AppUser implements Serializable {
     @Column(name = "userRole")
     private String userRole;
     @OneToMany(mappedBy = "appUserId")
-    private Collection<ActHistory> actHistoryCollection;
+    private List<ActHistory> actHistoryList;
     @OneToMany(mappedBy = "appUserId")
-    private Collection<NewQItem> newQItemCollection;
+    private List<NewQItem> newQItemList;
 
     public AppUser() {
     }
@@ -78,20 +78,20 @@ public class AppUser implements Serializable {
         this.appUserId = appUserId;
     }
 
-    public String getName() {
-        return name;
+    public String getAppName() {
+        return appName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getAppPwd() {
+        return appPwd;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setAppPwd(String appPwd) {
+        this.appPwd = appPwd;
     }
 
     public String getUserImage() {
@@ -119,21 +119,21 @@ public class AppUser implements Serializable {
     }
 
     @XmlTransient
-    public Collection<ActHistory> getActHistoryCollection() {
-        return actHistoryCollection;
+    public List<ActHistory> getActHistoryList() {
+        return actHistoryList;
     }
 
-    public void setActHistoryCollection(Collection<ActHistory> actHistoryCollection) {
-        this.actHistoryCollection = actHistoryCollection;
+    public void setActHistoryList(List<ActHistory> actHistoryList) {
+        this.actHistoryList = actHistoryList;
     }
 
     @XmlTransient
-    public Collection<NewQItem> getNewQItemCollection() {
-        return newQItemCollection;
+    public List<NewQItem> getNewQItemList() {
+        return newQItemList;
     }
 
-    public void setNewQItemCollection(Collection<NewQItem> newQItemCollection) {
-        this.newQItemCollection = newQItemCollection;
+    public void setNewQItemList(List<NewQItem> newQItemList) {
+        this.newQItemList = newQItemList;
     }
 
     @Override

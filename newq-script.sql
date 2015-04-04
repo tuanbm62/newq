@@ -4,8 +4,8 @@ use newq
 GO
 create table appUser(
 	appUserId int identity primary key ,
-	name varchar(15),
-	pwd varchar(50),
+	appName varchar(15),
+	appPwd varchar(50),
 	userImage varchar(200),
 	isAvailable bit default(1),
 	userRole varchar(5) default ('user')
@@ -18,7 +18,7 @@ create table appSecurity(
 )
 create table newQGroup(
 	newQGroupId int identity primary key,
-	name varchar(50),
+	newQGroupName varchar(50),
 	isAvailable bit default(1)
 )
 create table newQItem(
@@ -42,3 +42,5 @@ create table actHistory(
 	appUserId int,
 	foreign key (appUserId) references appUser(appUserId),
 )
+
+INSERT INTO appUser values('chinhnk','123','',1,'admin')
