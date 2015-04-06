@@ -3,7 +3,7 @@ GO
 use newq
 GO
 create table appUser(
-	appUserId int identity primary key ,
+	appUserId int primary key ,
 	appName varchar(15),
 	appPwd varchar(50),
 	userImage varchar(200),
@@ -11,18 +11,18 @@ create table appUser(
 	userRole varchar(5) default ('user')
 )
 create table appSecurity(
-	appSecurityId int identity primary key,
+	appSecurityId int primary key,
 	salt varchar(200),
 	sCount int,
 	isAvailable bit default(1),
 )
 create table newQGroup(
-	newQGroupId int identity primary key,
+	newQGroupId int primary key,
 	newQGroupName varchar(50),
 	isAvailable bit default(1)
 )
 create table newQItem(
-	newQItemId int identity primary key,
+	newQItemId int primary key,
 	title nvarchar(50),
 	presentImage varchar(200),
 	content nvarchar(MAX),
@@ -35,7 +35,7 @@ create table newQItem(
 	foreign key (newQGroupId) references newQGroup(newQGroupId)
 )
 create table actHistory(
-	actHistoryId int identity primary key,
+	actHistoryId int primary key,
 	typeAction varchar(20),
 	actionTime datetime,
 	actionDescription varchar(255),
@@ -43,4 +43,9 @@ create table actHistory(
 	foreign key (appUserId) references appUser(appUserId),
 )
 
-INSERT INTO appUser values('chinhnk','123','',1,'admin')
+INSERT INTO appUser values(1,'chinhnk','123','',1,'admin')
+INSERT INTO newQGroup values(1,'News',1);
+INSERT INTO newQGroup values(2,'Sports',0);
+INSERT INTO newQGroup values(3,'Weather',1);
+
+select * from newQItem;

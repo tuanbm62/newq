@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.resource.spi.AuthenticationMechanism;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -70,6 +71,7 @@ public class NewQItem implements Serializable {
     private NewQGroup newQGroupId;
 
     public NewQItem() {
+        newQGroupId = new NewQGroup();
     }
 
     public NewQItem(Integer newQItemId) {

@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 /**
  *
@@ -26,7 +25,10 @@ public class AppUserFacade extends AbstractFacade<AppUser> {
         return em;
     }
     
-    public AppUser findByNamePwd(AppUser appUser){
+    public AppUser findByNamePwd(AppUser appUser) throws Exception{
+        if (em == null) {
+            throw new Exception("em null");
+        }
         List<AppUser> result = em.createNamedQuery("AppUser.findByNamePwd")
                 .setParameter("appName", appUser.getAppName())
                 .setParameter("appPwd", appUser.getAppPwd())

@@ -5,7 +5,7 @@
  */
 package com.aptech.admin;
 
-import com.aptech.bl.SignIn;
+import com.aptech.bl.SignInEJB;
 import com.aptech.model.AppUser;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -21,21 +21,17 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class IndexController implements Serializable {
-
+    private static final boolean SIGNIN_ROLE_ADMIN = true;
     @Inject
-    private SignIn signIn;
+    private SignInEJB signIn;
     private AppUser appUser = new AppUser();
 
     public String adminSignIn() {
         try {
-            AppUser temp = signIn.check(appUser, true);
-            if (temp == null) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Sign in failure", "ABCZYZ"));
-                return "failure";
-            }
+            appUser = signIn.check(appUser, SIGNIN_ROLE_ADMIN);
             return "success";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.toString(), e.toString()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
             return "failure";
         }
     }
